@@ -1,0 +1,82 @@
+<form [formGroup]="form">
+  <div class="field">
+    <label class="label">Full Name</label>
+    <div class="control">
+      <input formControlName="full_name" class="input" type="text" placeholder="e.g Alex Smith">
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Email</label>
+    <div class="control">
+      <input formControlName="email" class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
+    </div>
+  </div>
+</form> 
+
+<form [formGroup]="addressForm">
+  <div class="field">
+    <label class="label">Address</label>
+    <address-autocomplete (placeSelected)="placeSelected($event)"></address-autocomplete>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <input 
+        formControlName="locality"
+        [ngClass]="{'input': true, 'is-danger': showError(addressForm, 'locality')}" 
+        type="email"
+        placeholder="City (fills up automatically)"
+        required readonly="readonly">
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <input 
+        formControlName="route"
+        [ngClass]="{'input': true, 'is-danger': showError(addressForm, 'route')}" 
+        type="text"
+        placeholder="Street (fills up automatically)"
+        required readonly="readonly">
+    </div>
+  </div>    
+
+  <div class="field is-horizontal">
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+          <input 
+            formControlName="street_number"
+            [ngClass]="{'input': true, 'is-danger': showError(addressForm, 'street_number')}" 
+            type="text"
+            placeholder="House number (fills up automatically)"
+            required readonly="readonly">
+        </div>
+      </div>  
+
+      <div class="field">
+        <div class="control">
+          <input 
+            formControlName="postal_code"
+            [ngClass]="{'input': true, 'is-danger': showError(addressForm, 'postal_code')}" 
+            type="text"
+            placeholder="Post code (fills up automatically)"
+            required readonly="readonly">
+        </div>
+      </div>     
+    </div>
+  </div>
+  
+  <div class="field">
+    <p class="control">
+      <button class="button is-primary" 
+        type="button"
+        (click)="submitForm()" 
+        [disabled]="form.invalid || addressForm.invalid"
+      >
+        Submit
+      </button>
+    </p>
+  </div>  
+</form>

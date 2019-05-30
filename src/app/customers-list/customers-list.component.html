@@ -1,0 +1,18 @@
+<div class="card" *ngFor="let customer of customers | keyvalue">
+  <header class="card-header">
+    <p class="card-header-title">
+      {{ customer.value.full_name }}  {{ customer.value.email }}
+    </p>
+    <a [routerLink]="['/edit-customer/', customer.key]" class="card-footer-item">Edit</a>
+
+  </header>
+  <div class="card-content">
+    <div class="content">
+        {{ customer.value.route }}
+        {{ customer.value.street_number }},
+        {{ customer.value.locality }},
+        LT{{ customer.value.postal_code }}
+    </div>
+  </div>
+  <div style="margin-top: 1rem;"></div>
+</div>
